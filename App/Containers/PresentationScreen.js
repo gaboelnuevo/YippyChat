@@ -6,6 +6,7 @@ import Routes from '../Navigation/Routes'
 import RoundedButton from '../Components/RoundedButton'
 import Icon from 'react-native-vector-icons/FontAwesome'
 //import I18n from '../I18n/I18n.js'
+import Actions from '../Actions/Creators'
 
 // Styles
 import styles from './Styles/PresentationScreenStyle'
@@ -42,49 +43,31 @@ export default class PresentationScreen extends React.Component {
       icon:'search',
       description:'swgg',
       color:'white'
-    },{
-      id:10,
-      people:99,
-      name:"#AngelHack",
-      location:{
-        lat:1.23,
-        lng:40.2
-      },
-      icon:'search',
-      description:'swgg',
-      color:'white'
-    },{
-      id:10,
-      people:99,
-      name:"#AngelHack",
-      location:{
-        lat:1.23,
-        lng:40.2
-      },
-      icon:'search',
-      description:'swgg',
-      color:'white'
-    },{
-      id:10,
-      people:99,
-      name:"#AngelHack",
-      location:{
-        lat:1.23,
-        lng:40.2
-      },
-      icon:'search',
-      description:'swgg',
-      color:'white'
     }]
 
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
 
     this.state = {
       username:'gadiel',
       iconDataSource: ds.cloneWithRows(chats),
     }
-  
+  }
+
+  componentWillReceiveProps (newProps) {
+    this.setState({
+      iconDataSource: this.state.iconDataSource.cloneWithRows(newProps.channels.channels)
+    })
+  }
+
+  componentWillMount(){
+    var _self = this;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        _self.props.dispatch(Actions.discoverChannels({lat:position.latitude, lng:position.longitude}));
+      },
+      (error) => alert(error.message),
+      {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
+    );
   }
 
   clickedRoom(roomData){
@@ -101,11 +84,11 @@ export default class PresentationScreen extends React.Component {
           </View>
           <View style={{flex:8}}>
             <Text style={{fontSize:13}}> {roomDetails.name} </Text>
-            <Text style={{fontSize:10}}> {roomDetails.location.lat} </Text>
+            <Text style={{fontSize:10}}> {roomDetails.description} </Text>
           </View>
           <View style={{marginRight:10,flexDirection:'row',alignItems:'center', justifyContent:'center',flex:1,padding:7, borderRadius:30, backgroundColor:'#E7E7E7'}} >
             <View style={{borderRadius:30,height:5, width:5,marginRight:4, backgroundColor:'green'}}/>
-            <Text>{roomDetails.people}</Text>
+            <Text>{roomDetails.id}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -148,6 +131,7 @@ export default class PresentationScreen extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    channels:state.discover.channels
   }
 }
 
