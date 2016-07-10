@@ -8,5 +8,9 @@ export default createTypes(`
 
   LOGOUT
 
+  REGISTER_ATTEMPT
+  REGISTER_SUCCESS
+  REGISTER_FAILURE
+
   STARTUP
 `)
