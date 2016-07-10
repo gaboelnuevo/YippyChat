@@ -24,5 +24,8 @@ export default StyleSheet.create({
   description: {
     margin: Metrics.baseMargin,
     color: Colors.coal
+  },
+  toolbarChannels: {
+  	marginBottom:15,flexDirection:'row',alignItems:'center',height:50, backgroundColor:'#4F96DB'
   }
 })

@@ -18,7 +18,7 @@ export default class PresentationScreen extends React.Component {
   }
 
   constructor(props) {
-    super(props);
+    super(props)
 
     var chats = [
     {
@@ -51,6 +51,10 @@ export default class PresentationScreen extends React.Component {
       username:'gadiel',
       iconDataSource: ds.cloneWithRows(chats),
     }
+  }
+
+  createChannelScreen(){
+  	this.props.navigator.push(Routes.NewChannelRoom);
   }
 
   componentWillReceiveProps (newProps) {
@@ -105,11 +109,13 @@ export default class PresentationScreen extends React.Component {
     return (
       <View style={styles.container}>
 
-        <View style={{marginBottom:15,flexDirection:'row',alignItems:'center',height:50, backgroundColor:'#4F96DB'}}>
+        <View style={styles.toolbarChannels}>
           
           <View style={{height:60, width:65}}/>
           <Text style={{flex:10,color:'white',fontSize:20}}>{this.state.username}</Text>
-          <Image source={Images.new_channel} style={{marginRight:10,width:40, height:40}}/>
+          <TouchableOpacity onPress={()=>this.props.navigator.push(Routes.NewChannelScreen)}>
+          	<Image source={Images.new_channel} style={{marginRight:10,width:40, height:40}}/>
+          </TouchableOpacity>
         </View>
         <View style={{justifyContent:'center',position:'absolute',top:0,backgroundColor:'#83C893',height:60, width:60, borderRadius:200, borderWidth:2, borderColor:'#4F96DB'}}>
           <Text style={{textAlign:'center', fontSize:25, color:'white'}}>IM</Text>
