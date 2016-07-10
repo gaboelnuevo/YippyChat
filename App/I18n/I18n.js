@@ -13,7 +13,13 @@ I18n.translations = {
     password: 'Password',
     cancel: 'Cancel',
     welcome: 'Welcome',
-    login: 'Login'
+    login: 'Login',
+    login_fast_login: 'use a fast nickname',
+    login_or: '- OR -',
+    login_register: 'create a account',
+    login_sign_text: 'already have a account? ',
+    login_signup: 'sign up here',
+    login_next: 'NEXT'
   },
   es: {
     signIn: 'Entrar',
@@ -23,7 +29,13 @@ I18n.translations = {
     password: 'Password',
     cancel: 'Cancelar',
     welcome: 'Bienvenido',
-    login: 'Entrar'
+    login: 'Entrar',
+    login_fast_login: 'use un apodo de forma rapida',
+    login_or: '- O -',
+    login_register: 'crear una cuenta',
+    login_sign_text: 'already have a account? ',
+    login_signup: 'sign up here',
+    login_next: 'NEXT'
   },
 }
 
