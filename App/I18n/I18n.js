@@ -6,21 +6,21 @@ I18n.fallbacks = true
 // All translations for the app go here:
 I18n.translations = {
   en: {
-    signIn: 'Sign In',
+    signIn: 'NEXT',
     logOut: 'Log Out',
     forgotPassword: 'Forgot Password',
-    username: 'Username',
-    password: 'Password',
+    username: 'username',
+    password: 'password',
     cancel: 'Cancel',
     welcome: 'Welcome',
     login: 'Login'
   },
   es: {
-    signIn: 'Entrar',
+    signIn: 'SIGUIENTE',
     logOut: 'Salir',
     forgotPassword: 'Recordar Contraseña',
-    username: 'Usuario',
-    password: 'Password',
+    username: 'usuario',
+    password: 'password',
     cancel: 'Cancelar',
     welcome: 'Bienvenido',
     login: 'Entrar'

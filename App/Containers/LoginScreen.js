@@ -44,7 +44,7 @@ class LoginScreen extends React.Component {
     const route = Routes.PresentationScreen;
 
     if(newProps.isLogged){
-      navigator.immediatelyResetRouteStack([route]);
+      navigator.replace(route);
     }else{
       if (this.isAttempting && !newProps.attempting) {
         navigator.pop();
@@ -87,7 +87,7 @@ class LoginScreen extends React.Component {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
     this.setState({
       visibleHeight: Metrics.screenHeight,
-      topLogo: {width: Metrics.screenWidth}
+      topLogo: { width: Metrics.screenWidth }
     })
   }
 
@@ -118,50 +118,59 @@ class LoginScreen extends React.Component {
     const editable = !attempting
     const textInputStyle = editable ? Styles.textInput : Styles.textInputReadonly
     return (
-      <View style={[Styles.container, {height: this.state.visibleHeight}]}>
-        <Image source={Images.logo} style={[Styles.topLogo, this.state.topLogo]} />
-        <View style={Styles.form}>
-          <View style={Styles.row}>
-            <Text style={Styles.rowLabel}>{I18n.t('username')}</Text>
-            <TextInput
-              ref='username'
-              style={textInputStyle}
-              value={username}
-              editable={editable}
-              keyboardType='default'
-              returnKeyType='search'
-              onChangeText={this.handleChangeUsername}
-              placeholder={I18n.t('username')} />
+      <View style={[Styles.container]}>
+        <View style={{flex:1}}>
+          <View style={{flex:1.2}}/>
+          <View style={{flex:2}}>
+            <Text style={{color:'#E2E2E2',textAlign:'center', fontSize:60}}>yippy<Text style={{fontWeight:'bold'}}>.chat</Text></Text>
           </View>
+          <View style={{flex:1}}/>
+        </View>
+        <View style={{flex:1}}>
+          
+          <View style={Styles.form}>
 
-          <View style={Styles.row}>
-            <Text style={Styles.rowLabel}>{I18n.t('password')}</Text>
-            <TextInput
-              ref='password'
-              style={textInputStyle}
-              value={password}
-              editable={editable}
-              keyboardType='default'
-              returnKeyType='search'
-              secureTextEntry
-              onChangeText={this.handleChangePassword}
-              placeholder={I18n.t('password')} />
-          </View>
+            <Text style={{textAlign:'center', marginBottom:5}}>create an account</Text> 
+            <View style={Styles.row}>
+              <TextInput
+                ref='username'
+                style={textInputStyle}
+                editable={editable}
+                keyboardType='default'
+                returnKeyType='search'
+                onChangeText={this.handleChangeUsername}
+                placeholder={I18n.t('username')} />
+            </View>
 
-          <View style={[Styles.loginRow]}>
-            <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressLogin}>
-              <View style={Styles.loginButton}>
-                <Text style={Styles.loginText}>{I18n.t('signIn')}</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressCancel}>
-              <View style={Styles.loginButton}>
-                <Text style={Styles.loginText}>{I18n.t('cancel')}</Text>
-              </View>
-            </TouchableOpacity>
+            <View style={[Styles.row]}>
+              <TextInput
+                ref='password'
+                style={textInputStyle}
+                editable={editable}
+                keyboardType='default'
+                returnKeyType='search'
+                secureTextEntry
+                onChangeText={this.handleChangePassword}
+                placeholder={I18n.t('password')} />
+            </View>
+
+            <View style={[Styles.loginRow]}>
+              <View style={{flex:1}}></View>
+              <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressLogin}>
+                <View style={Styles.loginButton}>
+                  <Text style={Styles.loginText}>{I18n.t('signIn')}</Text>
+                </View>
+              </TouchableOpacity>
+              <View style={{flex:1}}/>
+            </View>
+            <View style={[Styles.loginRow]}>
+              <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressLogin}>
+                <Text style={{marginTop:10,textAlign: 'center',fontSize:15}}>already have an account? <Text style={{color:'#498DDE'}}>sign in here</Text></Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-
+        <View style={{flex:1}}/>
       </View>
     )
   }

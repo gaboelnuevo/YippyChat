@@ -24,7 +24,8 @@ export default new class Routes {
     return {
       title: I18n.t('welcome'),
       component: require('../Containers/PresentationScreen').default,
-      leftButton: 'HAMBURGER'
+      leftButton: 'HAMBURGER',
+      customConfiguration: Transitions.fade,
     }
   }
 
@@ -33,7 +34,8 @@ export default new class Routes {
       title: I18n.t('login'),
       component: require('../Containers/LoginScreen').default,
       customConfiguration: Transitions.modal,
-      leftButton: 'BACK'
+      leftButton: 'BACK',
+      hideNavbar: true,
     }
   }
 

@@ -7,11 +7,14 @@ import {Navigator} from 'react-native'
 
 const transitions = {
   default: {
-    ...Navigator.SceneConfigs.HorizontalSwipeJump,
+    ...Navigator.SceneConfigs.FloatFromBottomAndroid,
     gestures: null
   },
   modal: {
     ...Navigator.SceneConfigs.FloatFromBottom
+  },
+  fade: {
+    ...Navigator.SceneConfigs.FadeAndroid
   }
 }
 
