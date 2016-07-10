@@ -14,9 +14,6 @@ import styles from './Containers/Styles/RootStyle'
 
 const store = configureStore()
 
-
-
-
 // https://github.com/zo0r/react-native-push-notification
 PushNotification.configure({
 
