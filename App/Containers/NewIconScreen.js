@@ -28,15 +28,18 @@ export default class NewIconScreen extends React.Component {
 	isLogged: PropTypes.bool
   }
 
-  toNextScreen(){
+  toNextScreen(icon){
   	const { navigator } = this.props;
-  	const route = Routes.NewColorScreen;
+  	const route = Routes.NewColorScreen({
+  		name: this.props.passProps.name, 
+  		description: this.props.passProps.description,
+  		icon: icon
+  	});
   	navigator.push(route);
   }
 
   setIcon(iconName){
-  	console.log(iconName);
-  	this.toNextScreen();
+  	this.toNextScreen(iconName);
   }
 
   renderItem(rowData){

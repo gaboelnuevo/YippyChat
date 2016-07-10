@@ -23,29 +23,32 @@ export default new class Routes {
 		}
 	}
 
-	get NewDescriptionScreen () {
+	NewDescriptionScreen (data) {
 		return {
 			title: '',
 			component: require('../Containers/NewDescriptionScreen').default,
-			hideNavbar: true
+			hideNavbar: true,
+			passProps: data
 			// customConfiguration: Transitions.modal
 		}
 	}
 
-	get NewIconScreen () {
+	NewIconScreen (data) {
 		return {
 			title: '',
 			component: require('../Containers/NewIconScreen').default,
-			hideNavbar: true
+			hideNavbar: true,
+			passProps: data
 			// customConfiguration: Transitions.modal
 		}
 	}
 
-	get NewColorScreen () {
+	NewColorScreen (data) {
 		return {
 			title: '',
 			component: require('../Containers/NewColorScreen').default,
-			hideNavbar: true
+			hideNavbar: true,
+			passProps: data
 			// customConfiguration: Transitions.modal
 		}
 	}

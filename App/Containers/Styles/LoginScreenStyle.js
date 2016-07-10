@@ -3,9 +3,9 @@ import Colors from '../../Themes/Colors'
 
 export default StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    paddingTop: 70,
-    backgroundColor: Colors.deepOcean
+    backgroundColor: Colors.snow,
+    flex:1,
+    alignItems:'center',
   },
   form: {
     backgroundColor: Colors.background,
@@ -13,42 +13,43 @@ export default StyleSheet.create({
     borderRadius: 4
   },
   row: {
-    paddingVertical: 20,
-    paddingHorizontal: 20
+    paddingHorizontal: 5,
+    marginHorizontal:20,
+    marginVertical:5,
+    backgroundColor:"#E2E2E2", 
+    borderRadius: 8
   },
   rowLabel: {
     color: Colors.charcoal
   },
-  textInput: {
-    height: 40,
-    color: Colors.coal
+  textInput: {height: 40,  backgroundColor: '#E2E2E2'
   },
   textInputReadonly: {
     height: 40,
     color: Colors.steel
   },
   loginRow: {
-    paddingBottom: 20,
     paddingHorizontal: 20,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flex:1,
   },
   loginButtonWrapper: {
-    flex: 1
+    flex: 2
   },
   loginButton: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: Colors.charcoal,
-    backgroundColor: Colors.panther,
-    padding: 6
+    borderRadius:9,
+    marginTop:10,
+    backgroundColor: Colors.greenMasiso,
+    padding: 10
   },
   loginText: {
     textAlign: 'center',
+    fontSize:20,
     color: Colors.silver
   },
   topLogo: {
     alignSelf: 'center',
     resizeMode: 'contain',
-    margin: 10
   }
 })
