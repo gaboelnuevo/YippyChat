@@ -78,7 +78,7 @@ export default StyleSheet.create({
   	fontSize: 20
   },
   lists:{
-  	justifyContent: 'space-around',
+  	justifyContent: 'flex-start',
   	flexDirection: 'row',
   	flexWrap: 'wrap',
   	marginTop: 20

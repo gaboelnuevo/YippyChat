@@ -120,7 +120,7 @@ export default class RNBase extends React.Component {
           >
             <Navigator
               ref={(ref) => { this.navigator = ref }}
-              initialRoute={Routes.LoginScreen}
+              initialRoute={Routes.NewChannelScreen}
               configureScene={Router.configureScene}
               renderScene={Router.renderScene}
               navigationBar={this.renderNavBar()}

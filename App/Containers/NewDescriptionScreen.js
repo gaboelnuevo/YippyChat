@@ -13,7 +13,9 @@ export default class NewDescriptionScreen extends React.Component {
 
   constructor (props) {
 	super(props)
-	this.state = {}
+	this.state = {
+		description: ''
+	}
 	// this.handlePressLogin = this.handlePressLogin.bind(this)
 	this.props.isLogged = false;
   }
@@ -25,7 +27,11 @@ export default class NewDescriptionScreen extends React.Component {
 
   toNextScreen(){
   	const { navigator } = this.props;
-  	const route = Routes.NewIconScreen;
+  	const route = Routes.NewIconScreen({
+  		name: this.props.passProps.name, 
+  		description: this.state.description 
+  	});
+
   	navigator.push(route);
   }
 
@@ -40,7 +46,7 @@ export default class NewDescriptionScreen extends React.Component {
 		  DESCRIPTION
 		  </Text>
 		  <View style={styles.textareaContainer}>
-		  	<TextInput editable={true} maxLength={100} multiline={true} numberOfLines={4} underlineColorAndroid='#fff' placeholder='Type the name' style={styles.textarea}/>
+		  	<TextInput onChangeText={(description) => this.setState({description})} editable={true} maxLength={100} multiline={true} numberOfLines={4} underlineColorAndroid='#fff' placeholder='Type the name' style={styles.textarea}/>
 		  	<TouchableOpacity onPress={this.toNextScreen.bind(this)}>
 				<Text style={styles.nextTextarea}>
 					NEXT

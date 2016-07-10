@@ -25,7 +25,7 @@ export default class NewChannelScreen extends React.Component {
 
   toNextScreen(){
   	const { navigator } = this.props;
-  	const route = Routes.NewDescriptionScreen;
+  	const route = Routes.NewDescriptionScreen({ name: this.state.name });
   	navigator.push(route);
   }
 
@@ -43,7 +43,7 @@ export default class NewChannelScreen extends React.Component {
 		  CHANNEL
 		  </Text>
 		  <View style={styles.inputContainer}>
-		  	<TextInput editable={true} maxLength={30} placeholder='Type the name' underlineColorAndroid='#fff' style={styles.input}/>
+		  	<TextInput onChangeText={(name) => this.setState({name})} editable={true} maxLength={30} placeholder='Type the name' underlineColorAndroid='#fff' style={styles.input}/>
 		  	<TouchableOpacity onPress={this.toNextScreen.bind(this)}>
 				<Text style={styles.next}>
 					NEXT
