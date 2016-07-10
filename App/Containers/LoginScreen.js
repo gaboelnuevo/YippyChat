@@ -27,14 +27,16 @@ class LoginScreen extends React.Component {
       username: 'username',
       password: 'password',
       visibleHeight: Metrics.screenHeight,
-      topLogo: { width: Metrics.screenWidth }
+      topLogo: { width: Metrics.screenWidth },
+      registerScreen: true,
+      attempting: false
     }
-    this.isAttempting = false
 
     // Bind before render
     this.handleChangeUsername = this.handleChangeUsername.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
-    this.handlePressLogin = this.handlePressLogin.bind(this)
+    this.handlePressNext = this.handlePressNext.bind(this)
+    this.handlePressToggle = this.handlePressToggle.bind(this)
     this.handlePressCancel = this.handlePressCancel.bind(this)
   }
 
@@ -43,12 +45,11 @@ class LoginScreen extends React.Component {
     const { navigator } = this.props;
     const route = Routes.PresentationScreen;
 
+    this.setState({
+      attempting: newProps.attempting
+    })
     if(newProps.isLogged){
       navigator.replace(route);
-    }else{
-      if (this.isAttempting && !newProps.attempting) {
-        navigator.pop();
-      }
     }
   }
 
@@ -60,6 +61,10 @@ class LoginScreen extends React.Component {
 
     // Configure the right nav button
     this.props.navigator.state.tapForgotPassword = this.tapForgotPassword.bind(this)
+
+    this.setState({
+      attempting: false
+    })
   }
 
   // Method that runs when you tap the right nav bar button
@@ -91,12 +96,22 @@ class LoginScreen extends React.Component {
     })
   }
 
-  handlePressLogin () {
+  handlePressNext () {
     const { username, password } = this.state
     const { dispatch } = this.props
-    this.isAttempting = true
+
     // attempt a login - a saga is listening to pick it up from here.
-    dispatch(Actions.attemptLogin(username, password))
+    if(this.state.registerScreen){
+        dispatch(Actions.attemptRegister(username, password))
+    }else{
+        dispatch(Actions.attemptLogin(username, password))
+    }
+  }
+
+  handlePressToggle () {
+    this.setState({
+      registerScreen: !this.state.registerScreen
+    })
   }
 
   handlePressCancel () {
@@ -113,9 +128,8 @@ class LoginScreen extends React.Component {
   }
 
   render () {
-    const { username, password } = this.state
-    const { attempting } = this.props
-    const editable = !attempting
+    const { username, password, attempting } = this.state
+    const editable = true
     const textInputStyle = editable ? Styles.textInput : Styles.textInputReadonly
     return (
       <View style={[Styles.container]}>
@@ -127,10 +141,10 @@ class LoginScreen extends React.Component {
           <View style={{flex:1}}/>
         </View>
         <View style={{flex:1}}>
-          
+
           <View style={Styles.form}>
 
-            <Text style={{textAlign:'center', marginBottom:5}}>create an account</Text> 
+            <Text style={{textAlign:'center', marginBottom:5}}>{this.state.registerScreen ? 'create an account' : 'loggin'}</Text>
             <View style={Styles.row}>
               <TextInput
                 ref='username'
@@ -156,7 +170,7 @@ class LoginScreen extends React.Component {
 
             <View style={[Styles.loginRow]}>
               <View style={{flex:1}}></View>
-              <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressLogin}>
+              <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressNext}>
                 <View style={Styles.loginButton}>
                   <Text style={Styles.loginText}>{I18n.t('signIn')}</Text>
                 </View>
@@ -164,8 +178,8 @@ class LoginScreen extends React.Component {
               <View style={{flex:1}}/>
             </View>
             <View style={[Styles.loginRow]}>
-              <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressLogin}>
-                <Text style={{marginTop:10,textAlign: 'center',fontSize:15}}>already have an account? <Text style={{color:'#498DDE'}}>sign in here</Text></Text>
+              <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressToggle}>
+                <Text style={{marginTop:10,textAlign: 'center',fontSize:15}}>{this.state.registerScreen ? 'already have an account?' : ''} <Text style={{color:'#498DDE'}}>{this.state.registerScreen ? 'sign in here' : 'BACK'}</Text></Text>
               </TouchableOpacity>
             </View>
           </View>
