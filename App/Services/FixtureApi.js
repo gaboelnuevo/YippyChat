@@ -13,10 +13,20 @@ function fakeLogin(credentials){
   }
 }
 
+function fakeRegister(credentials){
+  return {
+    ok: true,
+    data: null
+  }
+}
+
 
 export default {
   //FAKE LOGIN
   userLogin: (credentials)  => {
     return fakeLogin(credentials)
+  },
+  userRegister: (credentials)  => {
+    return fakeRegister(credentials)
   }
 }

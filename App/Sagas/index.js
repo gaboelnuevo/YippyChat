@@ -3,6 +3,8 @@ import API from '../Services/Api'
 import FixtureAPI from '../Services/FixtureApi'
 import { watchStartup } from './StartupSaga'
 import loginUser from './LoginSaga'
+import registerUser from './RegisterSaga'
+import discoverChannels from './DiscoverSaga'
 
 import DebugSettings from '../Config/DebugSettings'
 
@@ -15,4 +17,7 @@ const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
 export default function * root () {
   yield fork(watchStartup)
   yield fork(loginUser(api).watchLoginAttempt)
+  yield fork(registerUser(api).watchRegisterAttempt)
+  yield fork(registerUser(api).watchRegisterAttempt)
+  yield fork(discoverChannels(api).watcher)
 }

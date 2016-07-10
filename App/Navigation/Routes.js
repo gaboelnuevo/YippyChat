@@ -61,6 +61,17 @@ export default new class Routes {
     }
   }
 
+  ChatRoom (data) {
+
+    return {
+      title: data.name,
+      component: require('../Containers/ChatRoom.js').default,
+      leftButton: 'BACK',
+      customConfiguration: Transitions.fade,
+      hideNavbar: true,
+    }
+  }
+
   get PresentationScreen () {
     return {
       title: I18n.t('welcome'),
