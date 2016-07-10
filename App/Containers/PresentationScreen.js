@@ -97,7 +97,7 @@ export default class PresentationScreen extends React.Component {
       <TouchableOpacity onPress={()=>this.clickedRoom(roomDetails)}>
         <View style={{marginHorizontal:15,height:60, flexDirection:'row', alignItems:'center', borderBottomWidth:0.5, }}>
           <View style={{marginRight:10,height:40, width:40,justifyContent:'center',backgroundColor:'red', alignItems:'center', borderRadius:100}}>
-            <Icon name={roomDetails.icon} size={22} color='#fff' style={{alignSelf:'center'}}/>
+            <Icon name={roomDetails.icon} size={22} color={roomDetails.color} style={{alignSelf:'center'}}/>
           </View>
           <View style={{flex:8}}>
             <Text style={{fontSize:13}}> {roomDetails.name} </Text>
