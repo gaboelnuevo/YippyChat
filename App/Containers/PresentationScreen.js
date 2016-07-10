@@ -30,7 +30,7 @@ export default class PresentationScreen extends React.Component {
       },
       icon:'search',
       description:'swgg',
-      color:'black'
+      color:'white'
     },{
       id:14,
       people:234,
@@ -41,7 +41,7 @@ export default class PresentationScreen extends React.Component {
       },
       icon:'search',
       description:'swgg',
-      color:'black'
+      color:'white'
     },{
       id:10,
       people:99,
@@ -52,7 +52,7 @@ export default class PresentationScreen extends React.Component {
       },
       icon:'search',
       description:'swgg',
-      color:'black'
+      color:'white'
     },{
       id:10,
       people:99,
@@ -63,7 +63,7 @@ export default class PresentationScreen extends React.Component {
       },
       icon:'search',
       description:'swgg',
-      color:'black'
+      color:'white'
     },{
       id:10,
       people:99,
@@ -74,7 +74,7 @@ export default class PresentationScreen extends React.Component {
       },
       icon:'search',
       description:'swgg',
-      color:'black'
+      color:'white'
     }]
 
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -88,7 +88,7 @@ export default class PresentationScreen extends React.Component {
   }
 
   clickedRoom(roomData){
-
+    this.props.navigator.push(Routes.ChatRoom(roomData));
   }
 
   renderItem(roomDetails){

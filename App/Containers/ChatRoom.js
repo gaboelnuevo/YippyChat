@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import { TouchableOpacity, ListView, ScrollView, Text, Image, View } from 'react-native'
+import { TouchableOpacity, Navigator, Platform, Dimensions,Linking, ListView, ScrollView, Text, Image, View } from 'react-native'
 import { Images } from '../Themes'
 import { connect } from 'react-redux'
 import Routes from '../Navigation/Routes'
@@ -9,11 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 var GiftedMessenger = require('react-native-gifted-messenger');
 
 
-var STATUS_BAR_HEIGHT = Navigator.NavigationBar.Styles.General.StatusBarHeight;
-if (Platform.OS === 'android') {
-  var ExtraDimensions = require('react-native-extra-dimensions-android');
-  var STATUS_BAR_HEIGHT = ExtraDimensions.get('STATUS_BAR_HEIGHT');
-}
+var STATUS_BAR_HEIGHT = 50;
 
 
 export default class ChatRoom extends React.Component {
@@ -51,9 +47,24 @@ export default class ChatRoom extends React.Component {
   
   }
 
-  clickedRoom(roomData){
+  setMessages(messages) {
+    this._messages = messages;
 
+    this.setState({
+      messages: messages,
+    });
   }
+
+  handleReceive(message = {}) {
+    this.setMessages(this._messages.concat(message));
+  }
+
+  handleSend(message = {}) {
+
+    message.uniqueId = Math.round(Math.random() * 10000); // simulating server-side unique id generation
+    this.setMessages(this._messages.concat(message));
+
+    }
 
   render () {
     return (
