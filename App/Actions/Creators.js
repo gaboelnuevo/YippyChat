@@ -22,6 +22,10 @@ const logout = () => ({ type: Types.LOGOUT })
 
 const startup = () => ({ type: Types.STARTUP })
 
+const discoverChannels = (location) => ({ type: Types.DISCOVER_CHANNELS, location})
+const discoverChannelsSuccess = (channels) => ({ type: Types.DISCOVER_CHANNELS_SUCCESS, channels})
+const discoverChannelsFailed = () => ({ type: Types.DISCOVER_CHANNELS_FAILED })
+
 /*const requestTemperature = (city) => ({ type: Types.TEMPERATURE_REQUEST, city })
 const receiveTemperature = (temperature) => ({ type: Types.TEMPERATURE_RECEIVE, temperature })
 const receiveTemperatureFailure = () => ({ type: Types.TEMPERATURE_FAILURE })*/
@@ -37,6 +41,9 @@ export default {
   registerSuccess,
   attemptRegister,
   registerFailure,
+  discoverChannels,
+  discoverChannelsSuccess,
+  discoverChannelsFailed,
   logout,
   startup
 }
