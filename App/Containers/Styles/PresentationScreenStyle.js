@@ -4,8 +4,7 @@ import { Colors, Metrics, CommonStyles } from '../../Themes/'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Metrics.navBarHeight,
-    backgroundColor: Colors.background
+    backgroundColor: Colors.snow,
   },
   logo: {
     height: 300,
