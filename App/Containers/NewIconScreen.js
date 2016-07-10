@@ -30,7 +30,7 @@ export default class NewIconScreen extends React.Component {
 
   toNextScreen(){
   	const { navigator } = this.props;
-  	const route = Routes.NewChannelScreen;
+  	const route = Routes.NewColorScreen;
   	navigator.push(route);
   }
 
@@ -61,7 +61,7 @@ export default class NewIconScreen extends React.Component {
 		  <View style={styles.inputContainer}>
 		  	<TextInput editable={true} maxLength={30} placeholder='Type to search icon' underlineColorAndroid='#fff' style={styles.input}/>
 		  </View>
-		  <ListView contentContainerStyle={styles.lists} renderRow={this.renderItem.bind(this)} dataSource={this.state.dataSource}/>
+		  <ListView pageSize={30} contentContainerStyle={styles.lists} renderRow={this.renderItem.bind(this)} dataSource={this.state.dataSource}/>
 	  </View>
 	)
   }

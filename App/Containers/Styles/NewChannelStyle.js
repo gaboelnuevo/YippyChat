@@ -88,6 +88,12 @@ export default StyleSheet.create({
   	height: 50,
   	margin: 12
   },
+  listItemColor:{
+  	width: 30,
+  	height: 30,
+  	borderRadius: 3,
+  	margin: 12
+  },
   messageContainer: {
     margin: 10,
     flex: 1,

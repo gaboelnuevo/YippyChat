@@ -5,7 +5,6 @@ import I18n from '../I18n/I18n.js'
 
 export default new class Routes {
 
-<<<<<<< HEAD
 	// Here are the "Containers" in our app (e.g. Screens).
 	//
 	// These routes are implemented as getter functions
@@ -74,7 +73,16 @@ export default new class Routes {
 			// customConfiguration: Transitions.modal
 		}
 	}
-=======
+
+	get NewColorScreen () {
+		return {
+			title: '',
+			component: require('../Containers/NewColorScreen').default,
+			hideNavbar: true
+			// customConfiguration: Transitions.modal
+		}
+	}
+
   // Here are the "Containers" in our app (e.g. Screens).
   //
   // These routes are implemented as getter functions
@@ -108,6 +116,5 @@ export default new class Routes {
       hideNavbar: true,
     }
   }
->>>>>>> f329c5c49c02adee486bcad380c09fecdbafa2cb
 
 }
