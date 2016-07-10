@@ -41,6 +41,15 @@ export default new class Routes {
 		}
 	}
 
+	get NewColorScreen () {
+		return {
+			title: '',
+			component: require('../Containers/NewColorScreen').default,
+			hideNavbar: true
+			// customConfiguration: Transitions.modal
+		}
+	}
+
   get IntroScreen () {
     return {
       title: '',
