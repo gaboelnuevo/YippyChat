@@ -30,7 +30,7 @@ export default (api) => {
   }
 
   return {
-    attempRegister,
+    attemptRegister,
     watchRegisterAttempt
   }
 }
