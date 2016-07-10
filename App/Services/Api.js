@@ -3,7 +3,7 @@ import apisauce from 'apisauce'
 import Reactotron from 'reactotron'
 
 // our "constructor"
-const create = (baseURL = 'http://192.168.1.111:8080/api') => {
+const create = (baseURL = 'https://yippychat.herokuapp.com/api') => {
   // ------
   // STEP 1
   // ------
@@ -47,6 +47,20 @@ const create = (baseURL = 'http://192.168.1.111:8080/api') => {
 
   const userLogin = (credentials) => api.post('/users/login', credentials)
 
+  const userRegister = (data) => api.post('/users', data)
+
+  const discoverChannels = (geolocation) => api.get(`/channels/nearby?here=${JSON.stringify(geolocation)}` )
+
+  const countChannelUsers = (id) => api.get(`/channels/${id}/users/count`)
+
+  const countChannelMessages = (id) => api.get(`/channels/${id}/messages/count`)
+
+  const getChannelData = (id) => api.get(`/channels/${id}`)
+
+  const getMessages = (id) => api.get(`/channels/${id}/messages`)
+
+  const sendMessage = (data) => api.post('/messages/sendmessage', data)
+
   // ------
   // STEP 3
   // ------
@@ -62,7 +76,13 @@ const create = (baseURL = 'http://192.168.1.111:8080/api') => {
   return {
     // a list of the API functions from step 2
     userLogin,
-
+    userRegister,
+    discoverChannels,
+    countChannelUsers,
+    countChannelMessages,
+    getChannelData,
+    getMessages,
+    sendMessage,
     // additional utilities
     addMonitor,
     setToken

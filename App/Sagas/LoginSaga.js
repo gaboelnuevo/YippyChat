@@ -11,7 +11,7 @@ export default (api) => {
     })
     if (response.ok) {
       if(api.setToken){
-        yield call(api.setToken, response.data.token)
+        yield call(api.setToken, response.data.id)
       }
       yield put(Actions.loginSuccess(username))
     }else{
