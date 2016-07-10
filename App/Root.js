@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Navigator, StatusBar } from 'react-native'
+import { View, Text, Navigator, StatusBar, BackAndroid} from 'react-native'
 import {Router, Routes, NavigationBar} from './Navigation/'
 import configureStore from './Store/Store'
 import { Provider } from 'react-redux'
@@ -53,6 +53,15 @@ export default class RNBase extends React.Component {
 
   constructor (props) {
     super(props)
+
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+      if (this.navigator && this.navigator.getCurrentRoutes().length > 1) {
+        this.navigator.pop();
+        return true;
+      }
+      return false;
+    });
+
     this.state = {
       hideNavbar: false
     };

@@ -5,6 +5,7 @@ import I18n from '../I18n/I18n.js'
 
 export default new class Routes {
 
+<<<<<<< HEAD
 	// Here are the "Containers" in our app (e.g. Screens).
 	//
 	// These routes are implemented as getter functions
@@ -73,5 +74,40 @@ export default new class Routes {
 			// customConfiguration: Transitions.modal
 		}
 	}
+=======
+  // Here are the "Containers" in our app (e.g. Screens).
+  //
+  // These routes are implemented as getter functions
+  // because I like the simple calling notation, but
+  // they're lazily evaluated to prevent recursion
+  // when the screens themselves use this Routes file.
+
+  get IntroScreen () {
+    return {
+      title: '',
+      component: require('../Containers/IntroScreen').default,
+      hideNavbar: true
+    }
+  }
+
+  get PresentationScreen () {
+    return {
+      title: I18n.t('welcome'),
+      component: require('../Containers/PresentationScreen').default,
+      leftButton: 'HAMBURGER',
+      customConfiguration: Transitions.fade,
+    }
+  }
+
+  get LoginScreen () {
+    return {
+      title: I18n.t('login'),
+      component: require('../Containers/LoginScreen').default,
+      customConfiguration: Transitions.modal,
+      leftButton: 'BACK',
+      hideNavbar: true,
+    }
+  }
+>>>>>>> f329c5c49c02adee486bcad380c09fecdbafa2cb
 
 }

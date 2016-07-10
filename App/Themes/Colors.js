@@ -16,7 +16,8 @@ const colors = {
   coal: '#2d2d2d',
   bloodOrange: '#fb5f26',
   bloodOrangeJuice: 'rgba(251, 95, 38, 0.8)',
-  snow: 'white'
+  snow: 'white',
+  greenMasiso:'#6FCE1A',
 }
 
 export default colors
