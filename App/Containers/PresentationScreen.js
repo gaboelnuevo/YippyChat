@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import { TouchableOpacity, ListView, ScrollView, Text, Image, View } from 'react-native'
+import { TouchableOpacity, ListView, ScrollView, Text, Image, View, Alert } from 'react-native'
 import { Images } from '../Themes'
 import { connect } from 'react-redux'
 import Routes from '../Navigation/Routes'
@@ -20,58 +20,53 @@ export default class PresentationScreen extends React.Component {
   constructor(props) {
     super(props)
 
-    var chats = [
-    {
-      id:10,
-      people:99,
-      name:"#AngelHack",
-      location:{
-        lat:1.23,
-        lng:40.2
-      },
-      icon:'search',
-      description:'swgg',
-      color:'white'
-    },{
-      id:14,
-      people:234,
-      name:"#BarceloVrsRealma",
-      location:{
-        lat:1.23,
-        lng:40.2
-      },
-      icon:'search',
-      description:'swgg',
-      color:'white'
-    }]
-
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
-      username:'gadiel',
-      iconDataSource: ds.cloneWithRows(chats),
+      username: this.props.username,
+      dataSource: ds.cloneWithRows(this.props.channels)
     }
+
+    this.ds = ds;
+    this.discover = this.discover.bind(this)
   }
 
   createChannelScreen(){
   	this.props.navigator.push(Routes.NewChannelRoom);
   }
 
-  componentWillReceiveProps (newProps) {
+  componentWillReceiveProps(nextProps){
     this.setState({
-      iconDataSource: this.state.iconDataSource.cloneWithRows(newProps.channels.channels)
-    })
+       dataSource: this.ds.cloneWithRows(nextProps.channels),
+       username: nextProps.username
+    });
   }
 
-  componentWillMount(){
-    var _self = this;
-    navigator.geolocation.getCurrentPosition(
+
+  discover(){
+    const { dispatch } = this.props;
+
+    /*navigator.geolocation.getCurrentPosition(
       (position) => {
-        _self.props.dispatch(Actions.discoverChannels({lat:position.latitude, lng:position.longitude}));
+        dispatch(Actions.discoverChannels({lat:position.latitude, lng:position.longitude}));
       },
       (error) => alert(error.message),
       {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
-    );
+    );*/
+
+    // for test
+    dispatch(Actions.discoverChannels({lat:0, lng:0}));
+  }
+
+  componentWillMount(){
+    this.props.navigator.state.tapHamburger = () => {
+      this.props.navigator.drawer.toggle()
+    }
+
+  }
+
+  componentDidMount(){
+    this.discover();
   }
 
   clickedRoom(roomData){
@@ -99,18 +94,12 @@ export default class PresentationScreen extends React.Component {
     );
   }
 
-  componentWillMount () {
-    this.props.navigator.state.tapHamburger = () => {
-      this.props.navigator.drawer.toggle()
-    }
-  }
-
   render () {
     return (
       <View style={styles.container}>
 
         <View style={styles.toolbarChannels}>
-          
+
           <View style={{height:60, width:65}}/>
           <Text style={{flex:10,color:'white',fontSize:20}}>{this.state.username}</Text>
           <TouchableOpacity onPress={()=>this.props.navigator.push(Routes.NewChannelScreen)}>
@@ -121,9 +110,9 @@ export default class PresentationScreen extends React.Component {
           <Text style={{textAlign:'center', fontSize:25, color:'white'}}>IM</Text>
         </View>
 
-        <ListView 
+        <ListView
           renderRow={this.renderItem.bind(this)}
-          dataSource={this.state.iconDataSource}
+          dataSource={this.state.dataSource}
           automaticallyAdjustContentInsets={false}
           keyboardDismissMode="on-drag"
           keyboardShouldPersistTaps={true}/>
@@ -137,7 +126,8 @@ export default class PresentationScreen extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    channels:state.discover.channels
+    channels: state.discover.channels || [],
+    username: state.login.username || ''
   }
 }
 

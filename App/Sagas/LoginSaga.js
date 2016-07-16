@@ -10,13 +10,17 @@ export default (api) => {
       password: password
     })
     if (response.ok) {
-      if(api.setToken){
-        yield call(api.setToken, response.data.id)
-      }
-      yield put(Actions.loginSuccess(username))
+      yield call(setToken, response.data.id);
+      yield put(Actions.loginSuccess(username, response.data.userId));
     }else{
       // dispatch failure
       yield put(Actions.loginFailure('WRONG'))
+    }
+  }
+
+  function * setToken (accessToken){
+    if(api.setToken){
+      yield call(api.setToken, accessToken)
     }
   }
 
@@ -31,8 +35,17 @@ export default (api) => {
     }
   }
 
+  function * watchReceiveToken () {
+    // daemonize
+    while (true) {
+      const { accessToken } = yield take(Types.RECEIVE_TOKEN)
+      yield call(setToken, accessToken)
+    }
+  }
+
   return {
     attemptLogin,
-    watchLoginAttempt
+    watchLoginAttempt,
+    watchReceiveToken
   }
 }

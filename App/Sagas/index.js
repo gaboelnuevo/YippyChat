@@ -17,6 +17,7 @@ const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
 export default function * root () {
   yield fork(watchStartup)
   yield fork(loginUser(api).watchLoginAttempt)
+  yield fork(loginUser(api).watchReceiveToken)
   yield fork(registerUser(api).watchRegisterAttempt)
   yield fork(registerUser(api).watchRegisterAttempt)
   yield fork(discoverChannels(api).watcher)

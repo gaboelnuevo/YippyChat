@@ -26,6 +26,7 @@ const create = (baseURL = 'https://yippychat.herokuapp.com/api') => {
   const addMonitor = api.addMonitor((response) => {
     // Monitors are called passively after every request.
     Reactotron.apiLog(response)
+    console.log(response)
   })
 
   const setToken = (token) => api.setHeader('Authorization', token)
@@ -49,7 +50,7 @@ const create = (baseURL = 'https://yippychat.herokuapp.com/api') => {
 
   const userRegister = (data) => api.post('/users', data)
 
-  const discoverChannels = (geolocation) => api.get(`/channels/nearby?here=${JSON.stringify(geolocation)}` )
+  const discoverChannels = (geolocation) => api.post('/channels/nearby', {here: geolocation})
 
   const countChannelUsers = (id) => api.get(`/channels/${id}/users/count`)
 

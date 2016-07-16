@@ -5,12 +5,15 @@ import { createReducer } from 'reduxsauce'
 export const INITIAL_STATE = Immutable({
   discovering: null ,
   error: null,
-  channels: null
+  channels: null,
+  geolocation: null
 })
 
 const discover = (state, action) =>
   state.merge({
     discovering: true,
+    error: null,
+    geolocation: action.geolocation
   })
 
 const discoverSuccess = (state, action) =>
