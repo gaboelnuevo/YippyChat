@@ -69,7 +69,7 @@ export default class RNBase extends React.Component {
 
   componentWillMount () {
     const { dispatch } = store
-    dispatch(Actions.startup())
+    dispatch(Actions.startup());
   }
 
   componentDidMount () {

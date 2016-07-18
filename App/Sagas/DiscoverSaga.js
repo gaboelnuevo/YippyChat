@@ -21,9 +21,9 @@ export default (api) => {
   // ----------
   // This is our worker.  It does the job.
 
-  function * worker (location) {
+  function * worker (geolocation) {
     // make the call to the api
-    const response = yield call(api.discoverChannels, location)
+    const response = yield call(api.discoverChannels, geolocation)
     if (response.ok) {
       yield put(Actions.discoverChannelsSuccess(response.data))
     }else{
@@ -43,8 +43,8 @@ export default (api) => {
   // 4.  Calls the worker (above) to do the job.
   function * watcher () {
     while (true) {
-      const { location } = yield take(Types.DISCOVER_CHANNELS)
-      yield call(worker, location)
+      const { geolocation } = yield take(Types.DISCOVER_CHANNELS)
+      yield call(worker, geolocation)
     }
   }
 

@@ -29,7 +29,7 @@ class LoginScreen extends React.Component {
       visibleHeight: Metrics.screenHeight,
       topLogo: { width: Metrics.screenWidth },
       registerScreen: true,
-      attempting: false
+      waitingLogin: true
     }
 
     // Bind before render
@@ -45,10 +45,7 @@ class LoginScreen extends React.Component {
     const { navigator } = this.props;
     const route = Routes.PresentationScreen;
 
-    this.setState({
-      attempting: newProps.attempting
-    })
-    if(newProps.isLogged){
+    if(!this.state.waitingLogin && newProps.isLogged && !newProps.attempting){
       navigator.replace(route);
     }
   }
@@ -62,9 +59,6 @@ class LoginScreen extends React.Component {
     // Configure the right nav button
     this.props.navigator.state.tapForgotPassword = this.tapForgotPassword.bind(this)
 
-    this.setState({
-      attempting: false
-    })
   }
 
   // Method that runs when you tap the right nav bar button
@@ -106,6 +100,8 @@ class LoginScreen extends React.Component {
     }else{
         dispatch(Actions.attemptLogin(username, password))
     }
+
+    this.setState({waitingLogin: false});
   }
 
   handlePressToggle () {
@@ -201,7 +197,8 @@ LoginScreen.propTypes = {
 const mapStateToProps = (state) => {
   return {
     attempting: state.login.attempting,
-    isLogged: state.login.isLogged
+    isLogged: state.login.isLogged || false,
+    accessToken: state.login.accessToken
   }
 }
 

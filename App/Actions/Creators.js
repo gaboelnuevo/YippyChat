@@ -3,11 +3,14 @@ import Types from './Types'
 const attemptLogin = (username, password) =>
   ({ type: Types.LOGIN_ATTEMPT, username, password })
 
-const loginSuccess = (username) =>
-  ({ type: Types.LOGIN_SUCCESS, username })
+const loginSuccess = (username, userId) =>
+  ({ type: Types.LOGIN_SUCCESS, username, userId})
 
 const loginFailure = (errorCode) =>
   ({ type: Types.LOGIN_FAILURE, errorCode })
+
+const receiveToken = (accessToken) =>
+    ({ type: Types.RECEIVE_TOKEN, accessToken })
 
 const attemptRegister = (username, password) =>
     ({ type: Types.REGISTER_ATTEMPT, username, password })
@@ -22,7 +25,7 @@ const logout = () => ({ type: Types.LOGOUT })
 
 const startup = () => ({ type: Types.STARTUP })
 
-const discoverChannels = (location) => ({ type: Types.DISCOVER_CHANNELS, location})
+const discoverChannels = (geolocation) => ({ type: Types.DISCOVER_CHANNELS, geolocation})
 const discoverChannelsSuccess = (channels) => ({ type: Types.DISCOVER_CHANNELS_SUCCESS, channels})
 const discoverChannelsFailed = () => ({ type: Types.DISCOVER_CHANNELS_FAILED })
 
@@ -38,6 +41,7 @@ export default {
   attemptLogin,
   loginSuccess,
   loginFailure,
+  receiveToken,
   registerSuccess,
   attemptRegister,
   registerFailure,
