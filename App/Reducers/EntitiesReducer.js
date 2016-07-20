@@ -22,5 +22,4 @@ const ACTION_HANDLERS = {
   [Types.ENTITIES_RECEIVE]: receive
 }
 
-
 export default createReducer(INITIAL_STATE, ACTION_HANDLERS)
