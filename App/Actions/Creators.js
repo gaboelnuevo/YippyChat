@@ -29,9 +29,7 @@ const discoverChannels = (geolocation) => ({ type: Types.DISCOVER_CHANNELS, geol
 const discoverChannelsSuccess = (channels) => ({ type: Types.DISCOVER_CHANNELS_SUCCESS, channels})
 const discoverChannelsFailed = () => ({ type: Types.DISCOVER_CHANNELS_FAILED })
 
-/*const requestTemperature = (city) => ({ type: Types.TEMPERATURE_REQUEST, city })
-const receiveTemperature = (temperature) => ({ type: Types.TEMPERATURE_RECEIVE, temperature })
-const receiveTemperatureFailure = () => ({ type: Types.TEMPERATURE_FAILURE })*/
+const receiveEntities = (response) =>  ({ type: Types.RECEIVE_ENTITIES })
 
 /**
  Makes available all the action creators we've created.
@@ -42,6 +40,7 @@ export default {
   loginSuccess,
   loginFailure,
   receiveToken,
+  receiveEntities,
   registerSuccess,
   attemptRegister,
   registerFailure,

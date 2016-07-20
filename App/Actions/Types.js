@@ -6,6 +6,7 @@ export default createTypes(`
   LOGIN_SUCCESS
   LOGIN_FAILURE
   RECEIVE_TOKEN
+  RECEIVE_ENTITIES
 
   LOGOUT
 
