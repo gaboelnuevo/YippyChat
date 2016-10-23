@@ -11,8 +11,7 @@ export const INITIAL_STATE = Immutable({
 
 const create = (state, action) => state.merge({
   creating: true,
-  error: null,
-  data: action.data
+  error: null
 })
 
 const createSuccess = (state, action) => state.merge({
@@ -22,7 +21,7 @@ const createSuccess = (state, action) => state.merge({
 const createFailed = (state, action) =>
 state.merge({
   creating: false,
-  error: true
+  error: action.error;
 })
 
 const fetch = (state, action) => state.merge({
@@ -36,7 +35,7 @@ const fetchSuccess = (state, action) => state.merge({
 
 const fetchFailed = (state, action) => state.merge({
   fetching: false,
-  error: true
+  error: action.error
 })
 
 const join = (state, action) => state.merge({
@@ -50,7 +49,7 @@ const joinSuccess = (state, action) => state.merge({
 
 const joinFailed = (state, action) => state.merge({
   fetching: false,
-  error: true
+  error: action.error
 })
 
 const open = (state, action) => state.merge({
